@@ -20,8 +20,7 @@ SELECT primary_type, count(*) AS c FROM pokemons GROUP BY primary_type;
 # 15 is 19, 16 is 14, 17 is 22, and 18 is 1.
 
 # How many pokemon at level 100 does each trainer with at least one level 100 pokemon have?
-SELECT * FROM pokemon_trainer WHERE pokelevel = '100';
-# The answer is 963.
+SELECT COUNT(pokemon_id) FROM pokemon_trainer WHERE pokelevel = 100 GROUP BY trainerID;
 
 # How many Pokemon only belong to one trainer and no other?
 SELECT pokemon_id, COUNT(*) FROM pokemon_trainer GROUP BY pokemon_id HAVING COUNT(*) = 1;
