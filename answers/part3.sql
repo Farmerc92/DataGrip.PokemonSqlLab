@@ -8,10 +8,10 @@ SELECT pokemons.name, types.name AS "Secondary Type" FROM pokemons INNER JOIN ty
 SELECT pokemon_trainer.trainerID, pokemons.name FROM pokemons INNER JOIN pokemon_trainer ON pokemons.id = pokemon_trainer.pokemon_id WHERE pokemon_trainer.trainerID = 303;
 
 # How many pokemon have a secondary type poison?
-SELECT * FROM pokemons WHERE secondary_type = 7;
+SELECT pokemons.id, types.name AS "Secondary Type" FROM pokemons INNER JOIN types ON pokemons.secondary_type = types.id WHERE secondary_type = 7;
 
 # What are all the primary types and how many pokemon have that type?
-SELECT primary_type, count(*) AS c FROM pokemons GROUP BY primary_type;
+SELECT pokemons.name, types.name FROM pokemons INNER JOIN types ON pokemons.primary_type = types.id GROUP BY types.name, pokemons.name ORDER BY types.name;
 
 # How many pokemon at level 100 does each trainer with at least one level 100 pokemon have?
 SELECT COUNT(pokemon_id) FROM pokemon_trainer WHERE pokelevel = 100 GROUP BY trainerID;
